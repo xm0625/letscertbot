@@ -16,4 +16,4 @@ RUN chmod 777 /*.*
 
 WORKDIR /app
 COPY . /app
-CMD /run.sh
+ENTRYPOINT ["/run.sh"]
