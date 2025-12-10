@@ -7,7 +7,7 @@ RUN apk update && apk add openssh sshpass mandoc man-pages cronie \
     && chmod 600 /var/spool/cron/root \
     && rm -rf /tmp/* /var/tmp/*
 
-RUN cat < "EOF" > /CronRootSync.sh
+RUN cat << "EOF" > /CronRootSync.sh
 #! /bin/bash
 
 echo "*/1 * * * * sleep 0s;/CronRootSync.sh" > /tmp/cron_root_tmp;
@@ -28,7 +28,7 @@ fi
 echo "CronRootSync: FileNoChange";
 EOF
 
-RUN cat < "EOF" > /run.sh
+RUN cat << "EOF" > /run.sh
 #! /bin/bash
 
 # set the timezone
@@ -39,7 +39,7 @@ echo Asia/Shanghai > /etc/timezone
 /usr/sbin/crond -n -x proc 2>&1 | stdbuf -o0 grep '^log_it' | stdbuf -o0 grep -Ev "CronRootSync.sh" | stdbuf -o0 grep -Ev "FileNoChange"
 EOF
 
-RUN cat < "EOF" > /data/cron_root.txt
+RUN cat << "EOF" > /data/cron_root.txt
 */1 * * * * source /root/.bashrc; echo "node_version: `node -v`"
 EOF
 
