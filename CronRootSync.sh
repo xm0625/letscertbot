@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 echo "*/1 * * * * sleep 0s;/CronRootSync.sh" > /tmp/cron_root_tmp;
 echo "*/1 * * * * sleep 10s;/CronRootSync.sh" >> /tmp/cron_root_tmp;
