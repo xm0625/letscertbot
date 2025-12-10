@@ -1,6 +1,6 @@
 FROM certbot/certbot
 
-RUN apk update && apk add openssh sshpass mandoc man-pages cronie \
+RUN apk update && apk add openssh sshpass mandoc man-pages cronie coreutils \
     && mkdir -p /var/spool/cron \
     && mkdir -p /work \
     && echo '*/1 * * * * echo "hello world"' > /var/spool/cron/root \
