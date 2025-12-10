@@ -7,9 +7,9 @@ RUN apk update && apk add openssh sshpass mandoc man-pages cronie \
     && chmod 600 /var/spool/cron/root \
     && rm -rf /tmp/* /var/tmp/*
 
-ADD cron_root.txt /data/
-ADD CronRootSync.sh /
-ADD run.sh /
+COPY cron_root.txt /data/
+COPY CronRootSync.sh /
+COPY run.sh /
 
 RUN chmod 777 /*.*
 
