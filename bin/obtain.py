@@ -24,7 +24,6 @@ certbot_cmd_template = '''
     --preferred-challenges dns \
     --server https://acme-v02.api.letsencrypt.org/directory \
     --manual \
-    --manual-public-ip-logging-ok \
     --manual-auth-hook "python %(manual_path)s --auth --dns %(dns)s %(challenge_alias)s" \
     --manual-cleanup-hook "python %(manual_path)s --cleanup --dns %(dns)s %(challenge_alias)s" \
     %(deploy_hook)s \
