@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/sh
 
 # set the timezone
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
