@@ -14,6 +14,7 @@ deploy_path = os.path.sep.join([root_path, 'bin', 'deploy.py'])
 
 certbot_cmd_template = '''
     certbot renew \
+    %(dry_run)s \
     -n \
     --agree-tos \
     %(deploy_hook)s \
@@ -29,12 +30,15 @@ def run(args):
 
     force_renewal = '--force-renewal' if args.force else ''
 
+    dry_run = '--dry-run' if args.dry else ''
+
     deploy_hook = '--deploy-hook "python ' + deploy_path + '"' if Utils.is_enable_deployment() else ''
 
     certbot_cmd = certbot_cmd_template % {
         'deploy_hook': deploy_hook,
         'cert_names': cert_names,
-        'force_renewal': force_renewal
+        'force_renewal': force_renewal,
+        'dry_run': dry_run
     }
 
     Logger.info('certbot renew: ' + certbot_cmd)
@@ -44,6 +48,7 @@ def run(args):
 def main():
     parser = argparse.ArgumentParser(description='example: python %s' % os.path.basename(__file__))
 
+    parser.add_argument('-t', '--dry', help='add --dry-run param, Simulating renewal of an existing certificate', default=False, action='store_true')
     parser.add_argument('-f', '--force', help='force renewal', default=False, action='store_true')
     parser.add_argument('-c', '--certs', help='certificates, e.g. domain.com', default=[], nargs='*')
 
