@@ -1,10 +1,10 @@
 FROM certbot/certbot
 
 RUN apk update && apk add openssh sshpass mandoc man-pages cronie coreutils \
-    && mkdir -p /var/spool/cron \
+    && mkdir -p /var/spool/cron/crontabs \
     && mkdir -p /work \
-    && echo '*/1 * * * * echo "hello world"' > /var/spool/cron/root \
-    && chmod 600 /var/spool/cron/root \
+    && echo '*/1 * * * * echo "hello world"' > /var/spool/cron/crontabs/root \
+    && chmod 600 /var/spool/cron/crontabs/root \
     && rm -rf /tmp/* /var/tmp/*
 
 COPY cron_root.txt /data/
