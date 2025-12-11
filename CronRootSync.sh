@@ -10,8 +10,8 @@ if [ -e "/data/cron_root.txt" ]; then
     cat /data/cron_root.txt >> /tmp/cron_root_tmp;
 fi
 
-if [ `md5sum /tmp/cron_root_tmp | awk -F\  '{print $1}'` != `md5sum /var/spool/cron/root | awk -F\  '{print $1}'` ]; then
-    cat /tmp/cron_root_tmp > /var/spool/cron/root;
+if [ `md5sum /tmp/cron_root_tmp | awk -F\  '{print $1}'` != `md5sum /var/spool/cron/crontabs/root | awk -F\  '{print $1}'` ]; then
+    cat /tmp/cron_root_tmp > /var/spool/cron/crontabs/root;
     echo "CronRootSync: FileChanged";
     exit;
 fi
