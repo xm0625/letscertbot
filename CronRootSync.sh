@@ -1,6 +1,7 @@
 #! /bin/sh
 
-echo "*/1 * * * * sleep 0s;/CronRootSync.sh" > /tmp/cron_root_tmp;
+echo 'MAILTO=""' > /tmp/cron_root_tmp;
+echo "*/1 * * * * sleep 0s;/CronRootSync.sh" >> /tmp/cron_root_tmp;
 echo "*/1 * * * * sleep 10s;/CronRootSync.sh" >> /tmp/cron_root_tmp;
 echo "*/1 * * * * sleep 20s;/CronRootSync.sh" >> /tmp/cron_root_tmp;
 echo "*/1 * * * * sleep 30s;/CronRootSync.sh" >> /tmp/cron_root_tmp;
